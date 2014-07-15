@@ -1,6 +1,11 @@
 package net.pkhsolutions.aphatos.i18n;
 
+import org.apache.commons.logging.LogFactory;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.Properties;
 
 public class MessageSource {
@@ -12,11 +17,10 @@ public class MessageSource {
 
     private MessageSource() {
         props = new Properties();
-        try {
-            // CHECKME Translations should be user-configurable
-            props.load(getClass().getResourceAsStream("messages.properties"));
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("messages.properties")))) {
+            props.load(reader);
         } catch (IOException e) {
-            e.printStackTrace();
+            LogFactory.getLog(MessageSource.class).error("An error occurred while loading messages", e);
         }
     }
 

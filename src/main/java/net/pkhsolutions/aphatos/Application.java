@@ -31,7 +31,7 @@ class Application {
         try {
             UIManager.setLookAndFeel(new Plastic3DLookAndFeel());
         } catch (Exception e) {
-            LogFactory.getLog(Application.class).debug("An exception occurred while setting the look and feel", e);
+            LogFactory.getLog(Application.class).error("An exception occurred while setting the look and feel", e);
         }
 
         // Show main form

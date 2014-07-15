@@ -19,9 +19,9 @@ public class AppVersion {
         props = new Properties();
         try {
             props.load(AppVersion.class
-                    .getResourceAsStream("/version.properties"));
+                    .getResourceAsStream("/META-INF/maven/net.pkhsolutions.aphatos/aphatos/pom.properties"));
         } catch (Exception e) {
-            LogFactory.getLog(AppVersion.class).debug("An exception occurred while reading the application version", e);
+            LogFactory.getLog(AppVersion.class).error("An exception occurred while reading the application version", e);
         }
     }
 
@@ -31,6 +31,6 @@ public class AppVersion {
      * @return the version string.
      */
     public static String getVersion() {
-        return props.getProperty("application.version", "N/A");
+        return props.getProperty("version", "N/A");
     }
 }
